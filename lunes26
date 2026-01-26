@@ -1,0 +1,174 @@
+package examen2code;
+
+public class Examen2code {
+
+    public static void main(String[] args) {
+
+        //5 Funciones Lógicas. (sin Ciclos. 4, 5 Argumentos)
+
+        //1
+        System.out.println(todosPares(2, 6, 4, 8, 10));
+        //2
+        System.out.println(alterno(1, 2, 3, 4, 5));
+        //3
+        System.out.println(iguales(5, 5, 5, 5, 5));
+        //4
+        System.out.println(diferentes(1, 2, 3, 4));
+        //5
+        System.out.println(sumandos(10, 1, 2, 3, 4));
+
+        //5 Funciones y/o Procedimientos con divisores y primos.
+        int n = 12;
+        int a = 10;
+        int b = 30;
+
+        // 1. 
+        System.out.println("primoB(" + n + ") = " + primoB(n));
+
+        // 2. 
+        System.out.println("Divisores de " + n + " asc:");
+        mostrarDivisoresAsc(n);
+
+        // 3. 
+        System.out.println("Cantidad de divisores de " + n + ": " + cantidadDivisores(n));
+
+        // 4. 
+        System.out.println("Primos entre " + a + " y " + b + ":");
+        mostrarPrimos(a, b);
+
+        // 5. 
+        System.out.println("Cantidad de primos entre " + a + " y " + b + ": "
+                + cantidadPrimos(a, b));
+
+        // 6. 
+        System.out.println("Divisores primos de " + n + ":");
+        mostrarDivPrimos(n);
+
+    }
+
+    //Examen #2. Lógica con Ciclos. Implementar en Java:
+    //Al menos 5 Funciones Lógicas. (sin Ciclos. 4, 5 Argumentos)
+    // FUNCIONES AUXILARES PAR / IMPAR
+    public static boolean par(int a) {
+        return a % 2 == 0;
+    }
+
+
+    //EJERCICIO 1
+    //todosPares(a, b, c, d, e):Función lógica que devuelve True, si todos los argumentos son pares.     
+    public static boolean todosPares(int a, int b, int c, int d, int e) {
+        return par(a) && par(b) && par(c) && par(d) && par(e);
+    }
+
+    //EJERCICIO 2
+    // AUXILAR
+    //Función lógica que devuelve True, si la secuencia de argumentos se alternan de pares e impares. No pueden haberdos argumentos juntos pares o impares.                                 2      2
+    public static boolean alterno(int a, int b) {
+        return par(a) != par(b);
+    }
+
+    //PRINCIPAL
+    // alterno(a, b, c, d, e)
+    public static boolean alterno(int a, int b, int c, int d, int e) {
+        return alterno(a, b) && alterno(b, c) && alterno(c, d) && alterno(d, e);
+    }
+
+    //EJERCICIO 3
+    // iguales(a, b, c, d, e)
+    //Función lógica que devuelve True, si todos los argumentos son iguales. 
+    public static boolean iguales(int a, int b, int c, int d, int e) {
+        return a == b && b == c && c == d && d == e;
+    }
+
+    //EJERCICIO 4
+    // diferentes(a, b, c, d)
+    // Función lógica que devuelve True, si todos los argumentos son diferentes. 
+    public static boolean diferentes(int a, int b, int c, int d) {
+        return a != b && a != c && a != d
+                && b != c && b != d
+                && c != d;
+    }
+
+    //EJERCICIO 5
+    // sumandos(a, b, c, d, e)
+    // Función lógica que devuelve True,si un argumento es igual a la suma de todos los otros argumentos.
+    public static boolean sumandos(int a, int b, int c, int d, int e) {
+
+        return a == b + c + d + e
+                || b == a + c + d + e
+                || c == a + b + d + e
+                || d == a + b + c + e
+                || e == a + b + c + d;
+
+    }
+
+    //==========================================================================
+    //Al menos 5 Funciones y/o Procedimientos con divisores y primos.
+    //Ejercicio 1. primo( n ) :Función lógica que devuelve True, si el entero n es primo. Implementar 2 algoritmos con T( n ), diferentes.
+    public static boolean primoB(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Ejercicio 2. mostrarDivisoresAsc( n ) :Procedimiento que muestra los divisores del entero n, de menor a mayor.
+    public static void mostrarDivisoresAsc(int n) {
+        int i = 1;
+        while (i <= n) {
+            if (n % i == 0) {
+                System.out.println(i);
+            }
+            i++;
+        }
+    }
+
+    //Ejercicio 3. cantidadDivisores( n ) :Función que devuelve la cantidad de divisores de n.
+    public static int cantidadDivisores(int n) {
+        int i = 1, c = 0;
+        while (i <= n) {
+            if (n % i == 0) {
+                c++;
+            }
+            i++;
+        }
+        return c;
+    }
+
+    //Ejercicio 4. mostrarPrimos(a, b) :Procedimiento que muestra los números primos entre a y b inclusive.
+    public static void mostrarPrimos(int a, int b) {
+        for (int i = a; i <= b; i++) {
+            if (primoB(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    //Ejercicio 5.cantidadPrimos(a, b) :Función que devuelve la cantidad de primos que existen entre los enteros a y b inclusive.
+    public static int cantidadPrimos(int a, int b) {
+        int c = 0;
+        for (int i = a; i <= b; i++) {
+            if (primoB(i)) {
+                c++;
+            }
+        }
+        return c;
+    }
+
+    //Ejercicio 6. mostrarDivPrimos( n ):Procedimiento que muestra los divisores primos del entero n.
+    public static void mostrarDivPrimos(int n) {
+        for (int i = 2; i <= n; i++) {
+            if (n % i == 0 && primoB(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+}
