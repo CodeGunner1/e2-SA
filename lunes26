@@ -5,7 +5,6 @@ public class Examen2code {
     public static void main(String[] args) {
 
         //5 Funciones Lógicas. (sin Ciclos. 4, 5 Argumentos)
-
         //1
         System.out.println(todosPares(2, 6, 4, 8, 10));
         //2
@@ -52,7 +51,6 @@ public class Examen2code {
     public static boolean par(int a) {
         return a % 2 == 0;
     }
-
 
     //EJERCICIO 1
     //todosPares(a, b, c, d, e):Función lógica que devuelve True, si todos los argumentos son pares.     
@@ -109,11 +107,15 @@ public class Examen2code {
         if (n <= 1) {
             return false;
         }
-        for (int i = 2; i <= n / 2; i++) {
+
+        int i = 2;
+        while (i <= n / 2) {
             if (n % i == 0) {
                 return false;
             }
+            i++;
         }
+
         return true;
     }
 
@@ -142,31 +144,40 @@ public class Examen2code {
 
     //Ejercicio 4. mostrarPrimos(a, b) :Procedimiento que muestra los números primos entre a y b inclusive.
     public static void mostrarPrimos(int a, int b) {
-        for (int i = a; i <= b; i++) {
+        int i = a;
+
+        while (i <= b) {
             if (primoB(i)) {
                 System.out.print(i + " ");
             }
+            i++;
         }
+
         System.out.println();
     }
 
     //Ejercicio 5.cantidadPrimos(a, b) :Función que devuelve la cantidad de primos que existen entre los enteros a y b inclusive.
     public static int cantidadPrimos(int a, int b) {
         int c = 0;
-        for (int i = a; i <= b; i++) {
+        int i = a;
+
+        while (i <= b) {
             if (primoB(i)) {
                 c++;
             }
+            i++;
         }
         return c;
     }
 
     //Ejercicio 6. mostrarDivPrimos( n ):Procedimiento que muestra los divisores primos del entero n.
     public static void mostrarDivPrimos(int n) {
-        for (int i = 2; i <= n; i++) {
+        int i = 2;
+        while (i <= n) {
             if (n % i == 0 && primoB(i)) {
                 System.out.print(i + " ");
             }
+            i++;
         }
         System.out.println();
     }
