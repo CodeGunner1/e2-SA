@@ -1,0 +1,294 @@
+package examen.pkg3.m1;
+
+public class EXAMEN3M1 {
+
+    public static void main(String[] args) {
+
+        // ==============================
+        // EJERCICIO #1: sumaDig(n)
+        // ==============================
+        // Suma los dígitos de un número
+        // Ejemplo: 123 → 1 + 2 + 3 = 6
+        System.out.println("sumaDig(123) = " + sumaDig(123));
+
+        // ==============================
+        // EJERCICIO #2: seEncuentra(n, dig)
+        // ==============================
+        // Verifica si un dígito está dentro del número
+        // Ejemplo: 12345 contiene el 3 → true
+        System.out.println("seEncuentra(12345, 3) = " + seEncuentra(12345, 3));
+
+        // ==============================
+        // EJERCICIO #3: mismosDigitos(n, m)
+        // ==============================
+        // Verifica si dos números tienen los mismos dígitos
+        // Ejemplo: 2131 y 321 → mismos dígitos → true
+        System.out.println("mismosDigitos(2131, 321) = " + mismosDigitos(2131, 321));
+
+        // ==============================
+        // EJERCICIO #4: frecuencia(n, dig)
+        // ==============================
+        // Cuenta cuántas veces aparece un dígito
+        // Ejemplo: 15567, dig=5 → aparece 2 veces
+        System.out.println("frecuencia(15567, 5) = " + frecuencia(15567, 5));
+
+        // ==============================
+        // EJERCICIO #5: digDiferentes(n)
+        // ==============================
+        // Verifica si todos los dígitos son distintos
+        // Ejemplo: 12345 → true | 1223 → false
+        System.out.println("digDiferentes(12345) = " + digDiferentes(12345));
+
+        // ==============================
+        // EJERCICIO #6: mismosDigitos(a, b, c)
+        // ==============================
+        // Verifica si los 3 números tienen los mismos dígitos
+        // Ejemplo: 123, 231, 312 → true
+        System.out.println("mismosDigitos(123, 231, 312) = " + mismosDigitos(123, 231, 312));
+
+        System.out.println("");
+        //----------------------------------------------------------------------
+        //Al menos 5 Funciones de consultas sobre cadenas de caracteres. 
+        //
+        //EJERCICIO#1
+        System.out.println("existeDigito(s1) :" + existeDigito("ABC"));
+        //EJERCICIO#2
+        System.out.println("frecuencia(s1, ch) : " + frecuencia("banana", 'a'));
+        //EJERCICIO#3
+        System.out.println("diferentes(s1) : " + diferentes("abc"));
+        //EJERCICIO#4
+        System.out.println("palindrome(s1) : " + palindrome("radar"));
+        //EJERCICIO#5
+        System.out.println("estanTodos(s1, s2) : " + estanTodos("abc", "bcae"));
+        //EJERCICIO#6 EXTRA QUE PIDE EL ING
+        System.out.println("mismosChar(s1, s2) : " + mismosChar("abc", "bca"));
+
+    }
+
+    //Examen #3. Lógica con Ciclos. Implementar en Java:
+    //
+    //Al menos 5 Funciones sobre dígitos de un entero.
+    //Cómo ejercicios base de dígitos, implementar: 
+    //mismosDig(n, m)
+    //
+    //==========================================================================
+    //EJERCICIO#1
+    //sumaDig( n ) : Función que devuelve la suma de los dígitos del entero n.
+    //ejemlo:
+    //  n= 123 -> 6
+    public static int sumaDig(int n) {
+        int n1 = n, suma = 0, d = 0;
+        //  123 > 0  
+        while (n1 > 0) { //existe digitos? 
+
+            d = n1 % 10; // accesar digito // 3 2 1
+            n1 = n1 / 10; // cortar digito
+
+            suma = suma + d;
+
+        }
+        return suma;
+
+    }
+
+    //EJERCICIO#2
+    //seEncuentra(n, dig) : Función Lógica que devuelve True, si el dígito dig, se encuentra en el entero n.
+    //                             12345       3
+    public static boolean seEncuentra(int n, int dig) {
+        int n1 = n, d = 0;
+        //  123 > 0  
+        while (n1 > 0) { //existe digitos? 
+
+            d = n1 % 10; // accesar digito  // 5
+            n1 = n1 / 10; // cortar digito
+            // 5 ==  3 ??
+            if (d == dig) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
+    //EJERCICIO#3
+    //mismosDigitos(n, m) :
+    //Función Lógica que devuelve True, si los enteros n y m tienen los mismos dígitos. Ej. Si n = 2131, m = 321devuelve True.    
+    //
+    public static boolean mismosDigitos(int n, int m) {
+
+        return estanTodos(n, m) && estanTodos(m, n);
+    }
+
+    //                                 2131   321
+    public static boolean estanTodos(int n, int m) {
+        int n1 = n, d = 0;
+        //      0 > 0
+        while (n1 > 0) { //existe digitos? 
+
+            d = n1 % 10; // accesar digito  // 2
+            n1 = n1 / 10; // cortar digito  // 0
+            //               2131     2
+            if (!seEncuentra(n, d)) {
+                return false;
+            }
+
+        }
+        return true;
+
+    }
+
+    //EJERCICIO#4
+    //frecuencia(n, dig) :
+    //Función que devuelve la cantidad de dígitos dig, que aparecen en el entero n.
+    // n = 1 5 5 6 7 , dig=5
+    public static int frecuencia(int n, int dig) {
+        int n1 = n, d = 0, c = 0;
+        //      0 > 0
+        while (n1 > 0) { //existe digitos? 
+
+            d = n1 % 10; // accesar digito  // 
+            n1 = n1 / 10; // cortar digito  // 
+            //             
+            if (d == dig) {
+                c++;
+            }
+
+        }
+        return c;
+
+    }
+    //EJERCICIO#5
+    //digDiferentes( n ) :
+    //Función Lógica que devuelve True, si todos los dígitos del entero n, son diferentes
+    // n = 1 2 3 4 5
+
+    public static boolean digDiferentes(int n) {
+        int n1 = n, d = 0, c = 0;
+        //      0 > 0
+        while (n1 > 0) { //existe digitos? 
+
+            d = n1 % 10; // accesar digito  // 5
+            n1 = n1 / 10; // cortar digito  // 1234
+
+            //           12345    5  
+            if (frecuencia(n, d) > 1) {
+                return false;
+            }
+
+        }
+        return true;
+
+    }
+
+    //EJERCICIO#6 EXTRA
+    //mismosDigitos (a, b, c, d, e) :
+    //Función Lógica que devuelve True, si todos los argumentos tienen los mismos dígitos.
+    public static boolean mismosDigitos(int a, int b, int c) {
+
+        return mismosDigitos(a, b) && mismosDigitos(b, c);
+    }
+
+    //Al menos 5 Funciones de consultas sobre cadenas de caracteres. ===========
+    //EJERCICIO#1
+    //existeDigito(s1) :Función Lógica que devuelve True, si existe al menos un dígito en la cadena s1.
+    //// Ejemplo: "abc1" → true, "abc" → false
+    //                                         abc1
+    public static boolean existeDigito(String s1) {
+        // i es el índice que recorre la cadena, comienza en 0
+        int i = 0;
+        //     3  <    4
+        while (i < s1.length()) {
+            //                              ABC1  
+            //el carcartet es digito? (       1           )
+            if (Character.isDigit(s1.charAt(i))) {
+                return true;
+            }
+
+            i++;
+        }
+
+        return false;
+    }
+
+    //EJERCICIO#2
+    //frecuencia(s1, ch) :Función que devuelve la cantidad de veces que aparece el carácter ch, en la cadena s1.
+    // Devuelve cuántas veces aparece el carácter ch en la cadena s1
+    // Ejemplo: "banana", 'a' → 3
+    public static int frecuencia(String s1, char ch) {
+        int i = 0, c = 0;
+        while (i < s1.length()) {
+            if (s1.charAt(i) == ch) {
+                c++;
+            }
+            i++;
+        }
+        return c;
+    }
+
+    //EJERCICIO#3
+    //diferentes(s1) :Función Lógica que devuelve True, si todos los caracteres de la cadena s1, son diferentes.
+    // Devuelve true si todos los caracteres son diferentes
+    // Ejemplo: "abc" → true | "aba" → false
+    public static boolean diferentes(String s1) {
+        int i = 0;
+        while (i < s1.length()) {
+            if (frecuencia(s1, s1.charAt(i)) > 1) {
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+
+    //EJERCICIO#4
+    //palindrome(s1) :Función Lógica que devuelve True, si los caracteres de la cadena s1 forman un palíndrome.
+    // Devuelve true si la cadena es palíndroma
+    // Ejemplo: "radar" → true
+    public static boolean palindrome(String s1) {
+        int i = 0, j = s1.length() - 1;
+        while (i < j) {
+            if (s1.charAt(i) != s1.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    //EJERCICIO#5
+    //estanTodos(s1, s2) :Función lógica que devuelve True, si todos los caracteres de la cadena s1, se encuentran en la cadena s2.
+    // Devuelve true si todos los caracteres de s1 están en s2
+    // Ejemplo: "abc", "bcae" → true
+    public static boolean estanTodos(String s1, String s2) {
+        int i = 0;
+        while (i < s1.length()) {
+            if (!seEncuentra(s2, s1.charAt(i))) {
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+
+    public static boolean seEncuentra(String s1, char ch) {
+        int i = 0;
+        while (i < s1.length()) {
+            if (s1.charAt(i) == ch) {
+                return true;
+            }
+            i = i + 1;
+        }
+        return false;
+    }
+
+    //EJERCICIO#6 EXTRA QUE PIDE EL ING
+    //mismosChar(s1, s2) :Función lógica que devuelve True, si los caracteres de las cadenas s1 y s2 son los mismos.
+    // Devuelve true si ambas cadenas tienen los mismos caracteres
+    // Ejemplo: "abc", "bca" → true
+    public static boolean mismosChar(String s1, String s2) {
+        return estanTodos(s1, s2) && estanTodos(s2, s1);
+    }
+
+}
